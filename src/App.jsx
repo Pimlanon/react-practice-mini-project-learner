@@ -24,7 +24,11 @@ export default function App() {
   return (
     <>
     <div className='card-container'>
-        <Card />
+      {/* วน render card ออกมาตามจำนวน array */}
+      {movies.map((ele) =>
+        <Card key={ele.title} title={ele.title} image={ele.image} />
+      )}
+        
     </div>
     </>
   );
