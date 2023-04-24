@@ -23,19 +23,39 @@ const movies = [
 export default function App() {
 
   const [selectedMovie, setSelectedMovie] = useState([])
-  const [movieTitle, setMovieTitle] = useState('aa');
+  // const [movieTitle, setMovieTitle] = useState('aa');
 
   const handleClick = (movieTitle) => {
-    setMovieTitle(movieTitle)
-  }
+    // setMovieTitle(movieTitle)
+
+    //เช็คว่ามี movieTitle ที่ซ้ำมั้ย
+    if(selectedMovie.includes(movieTitle)) {
+      setSelectedMovie(prev => {
+        //filter เอาอันที่ไม่ได้มี movieTitle ซ้ำอยู่ต่อ อันซ้ำจะไม่เอา
+        return prev.filter(ele => ele !== movieTitle)
+      })
+    } else {
+      setSelectedMovie(prev => {
+        return [...prev, movieTitle]
+      })
+    }
+    }
+
+    
 
   return (
     <>
+    
     <div className='card-container'>
-    {movieTitle}
+    <ul>
+      {selectedMovie.map((movieTitle) => 
+        <li key={movieTitle}>{movieTitle}</li>
+        ) 
+      }
+    </ul>
       {/* วน render card ออกมาตามจำนวน array */}
       {movies.map((ele) =>
-        <Card key={ele.title} movieData={ele} handleClick={handleClick} />
+        <Card key={ele.title} movieData={ele} handleClick={handleClick}  />
       )}
         
     </div>
