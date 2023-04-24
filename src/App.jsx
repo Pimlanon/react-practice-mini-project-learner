@@ -1,5 +1,6 @@
 import Card from './Card/Card';
 import './App.css'
+import { useState } from 'react';
 
 const movies = [
   {
@@ -16,17 +17,25 @@ const movies = [
     title: 'The Dark Knight',
     image:
       'https://www.wallpapermania.eu/images/lthumbs/2012-04/2487_Batman-The-Dark-Knight-Poster-HD-Wallpaper.jpg',
-  },
+  }
 ];
 
 export default function App() {
 
+  const [selectedMovie, setSelectedMovie] = useState([])
+  const [movieTitle, setMovieTitle] = useState('aa');
+
+  const handleClick = (movieTitle) => {
+    setMovieTitle(movieTitle)
+  }
+
   return (
     <>
     <div className='card-container'>
+    {movieTitle}
       {/* วน render card ออกมาตามจำนวน array */}
       {movies.map((ele) =>
-        <Card key={ele.title} movieData={ele} />
+        <Card key={ele.title} movieData={ele} handleClick={handleClick} />
       )}
         
     </div>

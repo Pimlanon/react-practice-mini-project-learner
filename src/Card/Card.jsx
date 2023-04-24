@@ -1,6 +1,6 @@
 import "./Card.css";
 
-export default function Card({movieData}) {
+export default function Card({movieData, handleClick}) {
   
 
   return (
@@ -16,7 +16,10 @@ export default function Card({movieData}) {
           { movieData.title } <br />
           <span style={{ fontSize: "25px" }}>&#9989;</span>
         </h2>
-        <button className="movie-card__btn">เลือก</button>
+        <button onClick={() => {
+          handleClick(movieData.title)
+        }}
+        className="movie-card__btn">เลือก</button>
       </div>
     </div>
   );
